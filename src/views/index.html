@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Les démons du midi</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../../node_modules/uikit/dist/css/uikit.almost-flat.min.css">
+    <link rel="stylesheet" href="../../node_modules/plyr/dist/plyr.css">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <div id="app">
+        <hr>
+        <router-view>Chargement</router-view>
+    </div>
+<!-- Javascript -->
+<script src="../app.js" charset="utf-8"></script>
+    <script>
+        (function(d, p){
+            var a = new XMLHttpRequest(),
+                    b = d.body;
+            a.open('GET', p, true);
+            a.send();
+            a.onload = function() {
+                var c = d.createElement('div');
+                c.setAttribute('hidden', '');
+                c.innerHTML = a.responseText;
+                b.insertBefore(c, b.childNodes[0]);
+            };
+        })(document, '../../node_modules/plyr/dist/sprite.svg');
+    </script>
+</body>
+</html>

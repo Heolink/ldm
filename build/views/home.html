@@ -1,0 +1,22 @@
+<div class="uk-grid" v-if="!$loadingAsyncData">
+    <div class="uk-width-3-10">
+        <ul>
+            <li v-for="(index, episode) in episodes" @click="selectEpisode(index)">
+                [{{ episode.number }}] {{ episode.title }} ({{ episode.counter }})
+            </li>
+        </ul>
+    </div>
+    <div class="uk-width-7-10">
+        <h3>{{ currentEpisode.title }} ({{ currentEpisode.counter }})</h3>
+        <hr>
+        <h5>{{ currentEpisode.subtitle }}</h5>
+        <div class="plyr">
+            <audio controls>
+            </audio>
+        </div>
+        <p>
+            {{ currentEpisode.desc }}
+        </p>
+    </div>
+</div>
+
