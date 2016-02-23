@@ -1,3 +1,4 @@
+"use strict";
 var Vue = require('vue');
 var fs = require('fs');
 var ldm = require('../ldm');
@@ -7,8 +8,8 @@ var home = Vue.extend({
     template: fs.readFileSync(app.getAppPath() + '/build/views/home.html', 'UTF8'),
     data: function () {
         return {
-            episodes: ldm.parse(),
-            currentEpisode: ldm.parse()[0],
+            episodes: null,
+            currentEpisode: null,
             plyr: null,
             counted: false
         };
@@ -49,6 +50,7 @@ var home = Vue.extend({
     methods: {
         selectEpisode: function (index) {
             this.currentEpisode = this.episodes[index];
+            this.loadEpisodePlayer();
         },
         loadEpisodePlayer: function () {
             this.counted = false;

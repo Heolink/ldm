@@ -9,6 +9,7 @@ var ldm = require('./ldm');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
+var loadingWindow = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
@@ -29,7 +30,6 @@ var startApp = function()
         minHeight: 200,
         acceptFirstMouse: true,
         titleBarStyle: 'hidden',
-        frame: false,
     });
 
     mainWindow.loadURL('file://' + __dirname + '/views/index.html');
@@ -38,6 +38,8 @@ var startApp = function()
     if(process.env.DEV) {
         mainWindow.openDevTools();
     }
+
+    loadingWindow.destroy();
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {
@@ -52,7 +54,7 @@ var startApp = function()
 // initialization and is ready to create browser windows.
 app.on('ready', function() {
 
-    var loadingWindow = new BrowserWindow({
+    loadingWindow = new BrowserWindow({
         width: 600,
         height: 200,
         titleBarStyle: 'hidden',
@@ -67,8 +69,7 @@ app.on('ready', function() {
 
     ldm.download().then((d)=>{
         ldm.parse().then((datas)=>{
-            ldm.populate(datas).then(()=>{
-                loadingWindow.destroy();
+            ldm.populate(datas).then(()=>{                
                 startApp();
             })
         });

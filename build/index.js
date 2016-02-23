@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path='../typings/main.d.ts' />
 var app = require('electron').app; // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
@@ -7,6 +8,7 @@ var ldm = require('./ldm');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 var mainWindow = null;
+var loadingWindow = null;
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
     // On OS X it is common for applications and their menu bar
@@ -23,14 +25,14 @@ var startApp = function () {
         minWidth: 500,
         minHeight: 200,
         acceptFirstMouse: true,
-        titleBarStyle: 'hidden',
-        frame: false
+        titleBarStyle: 'hidden'
     });
     mainWindow.loadURL('file://' + __dirname + '/views/index.html');
     // Open the DevTools.
     if (process.env.DEV) {
         mainWindow.openDevTools();
     }
+    loadingWindow.destroy();
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows
@@ -42,7 +44,7 @@ var startApp = function () {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 app.on('ready', function () {
-    var loadingWindow = new BrowserWindow({
+    loadingWindow = new BrowserWindow({
         width: 600,
         height: 200,
         titleBarStyle: 'hidden',
@@ -56,7 +58,6 @@ app.on('ready', function () {
     ldm.download().then(function (d) {
         ldm.parse().then(function (datas) {
             ldm.populate(datas).then(function () {
-                loadingWindow.destroy();
                 startApp();
             });
         });
