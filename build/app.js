@@ -1,5 +1,4 @@
 /// <reference path='../typings/main.d.ts' />
-"use strict";
 var Vue = require('vue');
 var VueRouter = require('vue-router');
 var VueAsyncData = require('vue-async-data');

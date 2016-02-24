@@ -22,6 +22,7 @@ app.on('window-all-closed', function() {
 
 var startApp = function()
 {
+    loadingWindow.destroy();
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 800,
@@ -39,7 +40,7 @@ var startApp = function()
         mainWindow.openDevTools();
     }
 
-    loadingWindow.destroy();
+
 
     // Emitted when the window is closed.
     mainWindow.on('closed', function() {

@@ -1,12 +1,12 @@
-<div class="uk-grid" v-if="!$loadingAsyncData">
-    <div class="uk-width-3-10">
-        <ul>
-            <li v-for="(index, episode) in episodes" @click="selectEpisode(index)">
-                [{{ episode.number }}] {{ episode.title }} ({{ episode.counter }})
+<div class="uk-grid uk-contrast container" v-if="!$loadingAsyncData">
+    <div class="uk-width-4-10">
+        <ul class="liste-episodes">
+            <li v-bind:class="{ 'active': currentEpisode.number == episode.number }" v-for="(index, episode) in episodes" @click="selectEpisode(index)">
+                <div class="diese-number"><span class="diese">#</span><span class="episode-number">{{ episode.number }}</span></div> {{ episode.title }} <div class="episode-counter"><span class="uk-badge uk-badge-success">{{ episode.counter }}</span></div>
             </li>
         </ul>
     </div>
-    <div class="uk-width-7-10">
+    <div class="uk-width-6-10 player-infos">
         <h3>{{ currentEpisode.title }} ({{ currentEpisode.counter }})</h3>
         <hr>
         <h5>{{ currentEpisode.subtitle }}</h5>

@@ -1,4 +1,3 @@
-"use strict";
 /// <reference path='../typings/main.d.ts' />
 var app = require('electron').app; // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
@@ -18,6 +17,7 @@ app.on('window-all-closed', function () {
     }
 });
 var startApp = function () {
+    loadingWindow.destroy();
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 800,
@@ -32,7 +32,6 @@ var startApp = function () {
     if (process.env.DEV) {
         mainWindow.openDevTools();
     }
-    loadingWindow.destroy();
     // Emitted when the window is closed.
     mainWindow.on('closed', function () {
         // Dereference the window object, usually you would store windows

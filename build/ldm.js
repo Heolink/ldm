@@ -1,4 +1,3 @@
-"use strict";
 var fs = require('fs');
 var http = require('http');
 var Q = require('q');
@@ -119,5 +118,5 @@ var Ldm = (function () {
         });
     };
     return Ldm;
-}());
+})();
 module.exports = new Ldm();

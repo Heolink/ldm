@@ -1,0 +1,47 @@
+html {
+    background-color: #43453f;
+}
+
+.container {
+    margin-top: 30px;
+}
+.liste-episodes {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
+    max-height: 580px;
+    overflow: auto;
+    li {
+        cursor: pointer;
+        background-color: #232323;
+        border-bottom: 1px solid #585858;
+        padding-right: 10px;
+        .diese-number {
+            width: 30px;
+            padding: 5px;
+            display:          inline-block;
+            background-color: #494949;
+            .diese {
+                color: #24ff9f;
+            }
+            .episode-number {
+                color: #ff8645;
+                font-weight: bold;
+            }
+        }
+        .episode-counter {
+            float: right;
+            display: block;
+            margin-top: 3px;
+        }
+        &:hover {
+            background-color: #494949;
+        }
+        &.active {
+            background-color: #494949;
+        }
+    }
+}
+.player-infos {
+    padding: 20px;
+}

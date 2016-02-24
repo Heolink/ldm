@@ -1,4 +1,3 @@
-"use strict";
 var Vue = require('vue');
 var fs = require('fs');
 var ldm = require('../ldm');
