@@ -35,6 +35,8 @@ var startApp = function()
 
     mainWindow.loadURL('file://' + __dirname + '/views/index.html');
 
+
+
     // Open the DevTools.
     if(process.env.DEV) {
         mainWindow.openDevTools();
@@ -69,8 +71,11 @@ app.on('ready', function() {
     loadingWindow.loadURL('file://' + __dirname + '/views/loader.html');
 
     ldm.download().then((d)=>{
+        console.log('etape1')
         ldm.parse().then((datas)=>{
-            ldm.populate(datas).then(()=>{                
+            console.log('etape2')
+            ldm.populate(datas).then(()=>{
+                console.log('etape3')
                 startApp();
             })
         });

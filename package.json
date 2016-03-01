@@ -6,7 +6,11 @@
   "private": true,
   "scripts": {
     "start": "DEV=true electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-packager . ldm --platform=darwin --arch=x64 --version=0.36.4 --out=dist --overwrite --icon=./icons/icon.icns --ignore='^/dist$' --ignore='^/icons$' --ignore='^/typings$' --ignore='^/src$' --prune",
+    "package:linux": "electron-packager . ldm --platform=linux --arch=x64 --version=0.36.4 --out=dist --overwrite --ignore='^/dist$' --ignore='^/icons$' --ignore='^/typings$' --ignore='^/src$' --prune",
+    "package:win32": "electron-packager . ldm --platform=win32 --arch=x64 --version=0.36.4 --out=dist --overwrite --ignore='^/dist$' --ignore='^/icons$' --ignore='^/typings$' --ignore='^/src$' --prune",
+    "package:all":"npm run package && npm run package:linux && npm run package:win32"
   },
   "repository": {
     "type": "git",

@@ -55,8 +55,11 @@ app.on('ready', function () {
     });
     loadingWindow.loadURL('file://' + __dirname + '/views/loader.html');
     ldm.download().then(function (d) {
+        console.log('etape1');
         ldm.parse().then(function (datas) {
+            console.log('etape2');
             ldm.populate(datas).then(function () {
+                console.log('etape3');
                 startApp();
             });
         });
