@@ -1,3 +1,4 @@
+"use strict";
 /// <reference path='../typings/main.d.ts' />
 var app = require('electron').app; // Module to control application life.
 var BrowserWindow = require('browser-window'); // Module to create native browser window.
@@ -17,7 +18,9 @@ app.on('window-all-closed', function () {
     }
 });
 var startApp = function () {
-    loadingWindow.destroy();
+    if (process.platform == 'darwin') {
+        loadingWindow.destroy();
+    }
     // Create the browser window.
     mainWindow = new BrowserWindow({
         width: 800,
@@ -27,6 +30,9 @@ var startApp = function () {
         acceptFirstMouse: true,
         titleBarStyle: 'hidden'
     });
+    if (process.platform != 'darwin') {
+        loadingWindow.destroy();
+    }
     mainWindow.loadURL('file://' + __dirname + '/views/index.html');
     // Open the DevTools.
     if (process.env.DEV) {
