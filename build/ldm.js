@@ -70,6 +70,7 @@ var Ldm = (function () {
                 dbEpisode.findOne({ number: v.number }, function (err, doc) {
                     if (!doc) {
                         dbEpisode.insert(v, function (err, doc) {
+                            counter++;
                         });
                     }
                     else {

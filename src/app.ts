@@ -10,6 +10,13 @@ Vue.use(VueAsyncData)
 var App = Vue.extend({});
 var router = new VueRouter();
 
+Vue.filter('numberDisplay', function (value) {
+    if( value < 10 ) {
+        value = '0'.concat(value);
+    }
+    return value;
+})
+
 var homeController = require('../controllers/home');
 
 router.map({

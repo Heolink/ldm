@@ -57,6 +57,7 @@ class Ldm {
                 } else {
                     numberEpisode = 0;
                 }
+
                 var episode = {
                     counter: 0,
                     number: numberEpisode,
@@ -86,7 +87,7 @@ class Ldm {
                 dbEpisode.findOne({number: v.number},function(err, doc){
                     if( !doc ) {
                         dbEpisode.insert(v, function(err, doc){
-
+                            counter++;
                         })
                     } else {
                         v.counter = doc.counter;

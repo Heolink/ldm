@@ -2,7 +2,10 @@
     <div class="uk-width-4-10">
         <ul class="liste-episodes">
             <li v-bind:class="{ 'active': currentEpisode.number == episode.number }" v-for="(index, episode) in episodes" @click="selectEpisode(index)">
-                <div class="diese-number"><span class="diese">#</span><span class="episode-number">{{ episode.number }}</span></div> {{ episode.title }} <div class="episode-counter"><span class="uk-badge uk-badge-success">{{ episode.counter }}</span></div>
+                <div class="diese-number">
+                    <span class="diese">#</span>
+                    <span class="episode-number">{{ episode.number | numberDisplay }}</span>
+                </div> {{ episode.title }} <div class="episode-counter"><span class="uk-badge uk-badge-success">{{ episode.counter }}</span></div>
             </li>
         </ul>
     </div>
